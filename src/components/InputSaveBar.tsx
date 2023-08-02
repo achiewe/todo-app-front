@@ -29,7 +29,7 @@ const InputSaveBar = ({ takeData }: propsBar): JSX.Element => {
 };
 
 const Form = styled.form`
-  width: 327px;
+  width: 100%;
   background-color: #ffffff;
   padding: 14px 0 14px 20px;
   display: flex;
