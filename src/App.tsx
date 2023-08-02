@@ -2,6 +2,7 @@ import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import InputSaveBar from "./components/InputSaveBar";
+import TodoMain from "./components/TodoMain";
 import BgMobileLight from "../src/assets/bg-mobile-light.jpg";
 import axios from "axios";
 import { DataProps } from "./types";
@@ -37,6 +38,7 @@ function App(): JSX.Element {
         </div>
       </List>
       <button onClick={deleteAll}> delete all</button>
+      <TodoMain />
     </MainContainer>
   );
 }
