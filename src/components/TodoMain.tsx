@@ -1,16 +1,43 @@
 import { styled } from "styled-components";
+import ControlPanel from "./ControlPanel";
+import InputSaveBar from "./InputSaveBar";
 import iconchek from "../assets/icon-check.svg";
+import { useEffect } from "react";
+import axios from "axios";
 import crossSvg from "../assets/icon-cross.svg";
+import { DataProps } from "../types";
+import { useState } from "react";
 
 const TodoMain = (): JSX.Element => {
+  const [info, setInfo] = useState<DataProps[] | []>([]);
+  const takeData = async () => {
+    const response = await axios.get("http://localhost:3000/api/tasks");
+    const data = response.data;
+    setInfo(data);
+  };
+  useEffect(() => {
+    takeData();
+  }, []);
+
+  const deleteAll = async () => {
+    await axios.delete("http://localhost:3000/api/deleteAll");
+    setInfo([]);
+  };
+
   return (
     <MainSaveDiv>
+      <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
+        {info.map((infoItem, index) => (
+          <div key={index}>{infoItem?.title}</div>
+        ))}
+        <button onClick={deleteAll}>delete all</button>
         <TextLi>
           <div className="circleText">
             <button className="circle">
               <img className="check-icon" src={iconchek} alt="check icon" />
             </button>
+            <h3> </h3>
           </div>
           <img className="cross-svg" src={crossSvg} alt="cross svg" />
         </TextLi>
@@ -20,6 +47,7 @@ const TodoMain = (): JSX.Element => {
           <button className="clear">Clear Completed</button>
         </div>
       </ul>
+      <ControlPanel />
     </MainSaveDiv>
   );
 };
