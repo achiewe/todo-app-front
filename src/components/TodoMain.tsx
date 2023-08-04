@@ -13,7 +13,7 @@ const TodoMain = (): JSX.Element => {
   const takeData = async () => {
     const response = await axios.get("http://localhost:3000/api/tasks");
     const data = response.data;
-    asdsd;
+
     setInfo(data);
   };
   useEffect(() => {
