@@ -1,7 +1,14 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const ControlPanel = (): JSX.Element => {
-  return <MainControl></MainControl>;
+  return (
+    <MainControl>
+      <Link to="/">All </Link>
+      <Link to="/Active">Active</Link>
+      <Link to="Completed">Completed</Link>
+    </MainControl>
+  );
 };
 
 const MainControl = styled.div`
@@ -16,6 +23,25 @@ const MainControl = styled.div`
   margin-bottom: 24px;
   box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
   gap: 18px;
+
+  a {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 14px;
+    letter-spacing: -0.1944444477558136px;
+    text-align: left;
+    color: #9495a5;
+    text-decoration: none;
+    cursor: pointer;
+
+    :hover {
+      color: #494c6b;
+    }
+
+    :focus {
+      color: #3a7cfd;
+    }
+  }
 `;
 
 export default ControlPanel;

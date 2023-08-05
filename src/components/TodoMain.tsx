@@ -32,7 +32,7 @@ const TodoMain = (): JSX.Element => {
         {info.map((infoItem, index) => (
           <div key={index}>{infoItem?.title}</div>
         ))}
-        <button onClick={deleteAll}>delete all</button>
+
         <TextLi>
           <div className="circleText">
             <button className="circle">
@@ -44,6 +44,7 @@ const TodoMain = (): JSX.Element => {
         </TextLi>
         <hr />
         <div className="itemsClear">
+          <button onClick={deleteAll}>delete all</button>
           <h2> {} items left</h2>
           <button className="clear">Clear Completed</button>
         </div>
