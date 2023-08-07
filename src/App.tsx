@@ -3,14 +3,20 @@ import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import TodoMain from "./components/TodoMain";
 import BgMobileLight from "../src/assets/bg-mobile-light.jpg";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App(): JSX.Element {
   return (
     <MainContainer>
-      <GlobalStyles />
-      <Header />
-
-      <TodoMain />
+      <Router>
+        <GlobalStyles />
+        <Header />
+        <Routes>
+          <Route path="/" element={<TodoMain />} />
+          <Route path="/Active" />
+          <Route path="/Completed" />
+        </Routes>
+      </Router>
     </MainContainer>
   );
 }
