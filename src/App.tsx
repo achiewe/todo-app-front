@@ -3,11 +3,14 @@ import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import TodoMain from "./components/TodoMain";
 import BgMobileLight from "../src/assets/bg-mobile-light.jpg";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { Mode } from "./store/redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App(): JSX.Element {
+  const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
   return (
-    <MainContainer>
+    <MainContainer darkMode={darkMode}>
       <Router>
         <GlobalStyles />
         <Header />
@@ -21,7 +24,7 @@ function App(): JSX.Element {
   );
 }
 
-const MainContainer = styled.div`
+const MainContainer = styled.div<{ darkMode: boolean }>`
   width: 100%;
   min-height: 100vh;
   display: flex;
