@@ -36,13 +36,12 @@ const TodoMain = (): JSX.Element => {
       <ul className="itemsUl">
         {info.map((infoItem, index) => (
           <div key={index}>
-            {infoItem?.title}
             <TextLi>
               <div className="circleText">
                 <button className="circle">
                   <img className="check-icon" src={iconchek} alt="check icon" />
                 </button>
-                <h3> </h3>
+                <h3> {infoItem?.title} </h3>
               </div>
               <img
                 onClick={() => {
@@ -132,6 +131,7 @@ const TextLi = styled.li`
   display: flex;
   flex-direction: row;
   padding: 0 20px;
+  padding-bottom: 10px;
   align-items: center;
   justify-content: space-between;
 
@@ -148,7 +148,7 @@ const TextLi = styled.li`
       border-radius: 50%;
       border: none;
       cursor: pointer;
-      border: "1px solid #e3e4f1";
+      border: 1px solid #e3e4f1;
       background: none;
     }
 
