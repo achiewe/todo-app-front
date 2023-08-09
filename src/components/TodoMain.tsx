@@ -7,8 +7,11 @@ import axios from "axios";
 import crossSvg from "../assets/icon-cross.svg";
 import { DataProps } from "../types";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { Mode } from "../store/redux";
 
 const TodoMain = (): JSX.Element => {
+  const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
   const [info, setInfo] = useState<DataProps[] | []>([]);
   const takeData = async () => {
     const response = await axios.get("http://localhost:3002/api/tasks");
@@ -30,12 +33,12 @@ const TodoMain = (): JSX.Element => {
   };
 
   return (
-    <MainSaveDiv>
+    <MainSaveDiv darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
         {info.map((infoItem, index) => (
           <div key={index}>
-            <TextLi>
+            <TextLi darkMode={darkMode}>
               <div className="circleText">
                 <button className="circle">
                   <img className="check-icon" src={iconchek} alt="check icon" />
@@ -64,7 +67,7 @@ const TodoMain = (): JSX.Element => {
   );
 };
 
-const MainSaveDiv = styled.div`
+const MainSaveDiv = styled.div<{ darkMode: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -76,8 +79,11 @@ const MainSaveDiv = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: "#FFFFFF";
-    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
+    background-color: ${(props) => (props.darkMode ? "#25273D" : "#FFFFFF")};
+    box-shadow: ${(props) =>
+      props.darkMode
+        ? "0px 35px 50px -15px rgba(0, 0, 0, 0.5)"
+        : "0px 35px 50px -15px rgba(194, 195, 214, 0.5)"};
     border-radius: 5px;
     margin-top: 30px;
     padding: 16px 0 22px 0;
@@ -85,7 +91,7 @@ const MainSaveDiv = styled.div`
 
     hr {
       width: 100%;
-      background-color: #e3e4f1;
+      background-color: ${(props) => (props.darkMode ? "#393A4B" : "#e3e4f1")};
       border: none;
       height: 1px;
     }
@@ -118,14 +124,14 @@ const MainSaveDiv = styled.div`
       }
 
       .clear:hover {
-        color: #494c6b;
+        color: ${(props) => (props.darkMode ? "#E3E4F1" : "#494C6B")};
         cursor: pointer;
       }
     }
   }
 `;
 
-const TextLi = styled.li`
+const TextLi = styled.li<{ darkMode: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -147,7 +153,8 @@ const TextLi = styled.li`
       border-radius: 50%;
       border: none;
       cursor: pointer;
-      border: 1px solid #e3e4f1;
+      border: ${(props) =>
+        props.darkMode ? "1px solid #393A4B" : "1px solid #e3e4f1"};
       background: none;
     }
 
@@ -171,7 +178,7 @@ const TextLi = styled.li`
       letter-spacing: -0.1666666716337204px;
       text-align: left;
       cursor: pointer;
-      color: #494c6b;
+      color: ${(props) => (props.darkMode ? "#C8CBE7" : "#494c6b")};
     }
   }
 
