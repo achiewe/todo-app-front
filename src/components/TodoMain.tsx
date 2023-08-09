@@ -85,7 +85,7 @@ const MainSaveDiv = styled.div<{ darkMode: boolean }>`
         ? "0px 35px 50px -15px rgba(0, 0, 0, 0.5)"
         : "0px 35px 50px -15px rgba(194, 195, 214, 0.5)"};
     border-radius: 5px;
-    margin-top: 30px;
+    margin-top: 5px;
     padding: 16px 0 22px 0;
     gap: 16px;
 
