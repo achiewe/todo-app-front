@@ -1,11 +1,14 @@
 import { styled } from "styled-components";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { Mode } from "../store/redux";
 
 interface propsBar {
   takeData: () => void;
 }
 
 const InputSaveBar = ({ takeData }: propsBar): JSX.Element => {
+  const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
   const addTask = async (e: any) => {
     try {
       e.preventDefault();
@@ -21,16 +24,21 @@ const InputSaveBar = ({ takeData }: propsBar): JSX.Element => {
   };
 
   return (
-    <Form onSubmit={addTask}>
+    <Form onSubmit={addTask} darkMode={darkMode}>
       <button></button>
       <input id="searchPlace" placeholder="Create a new todo…" />
     </Form>
   );
 };
 
-const Form = styled.form`
+const Form = styled.form<{ darkMode: boolean }>`
   width: 100%;
-  background-color: #ffffff;
+  background-color: ${(props) => (props.darkMode ? "#25273D" : "#ffffff")};
+  box-shadow: ${(props) =>
+    props.darkMode
+      ? "0px 35px 50px -15px rgba(0, 0, 0, 0.5)"
+      : "0px 35px 50px -15px #c2c3d680"};
+
   padding: 14px 0 14px 20px;
   display: flex;
   border: none;
@@ -42,9 +50,10 @@ const Form = styled.form`
   button {
     width: 20px;
     height: 20px;
-    background: #ffffff;
+    background: ${(props) => (props.darkMode ? "#25273D" : "#ffffff")};
     border-radius: 50%;
-    border: 1px solid #e3e4f1;
+    border: ${(props) =>
+      props.darkMode ? "1px solid #393A4B" : "1px solid #e3e4f1"};
   }
 
   input {
@@ -55,8 +64,8 @@ const Form = styled.form`
     line-height: 12px;
     letter-spacing: -0.1666666716337204px;
     text-align: left;
-    color: black;
-    background-color: #ffffff;
+    color: ${(props) => (props.darkMode ? "white" : "black")};
+    background-color: ${(props) => (props.darkMode ? "#25273D" : "#FFFFFF")};
     outline: none;
   }
 
