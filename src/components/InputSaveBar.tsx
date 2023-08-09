@@ -46,6 +46,12 @@ const Form = styled.form<{ darkMode: boolean }>`
   flex-direction: row;
   align-items: center;
   gap: 12px;
+  @media (min-width: 1024px) {
+    width: 540px;
+    padding: 20px 0 20px 24px;
+    gap: 24px;
+    height: 64px;
+  }
 
   button {
     width: 20px;
@@ -54,6 +60,10 @@ const Form = styled.form<{ darkMode: boolean }>`
     border-radius: 50%;
     border: ${(props) =>
       props.darkMode ? "1px solid #393A4B" : "1px solid #e3e4f1"};
+    @media (min-width: 1024px) {
+      width: 24px;
+      height: 24px;
+    }
   }
 
   input {
@@ -67,6 +77,13 @@ const Form = styled.form<{ darkMode: boolean }>`
     color: ${(props) => (props.darkMode ? "white" : "black")};
     background-color: ${(props) => (props.darkMode ? "#25273D" : "#FFFFFF")};
     outline: none;
+    @media (min-width: 1024px) {
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: -0.25px;
+      text-align: left;
+    }
   }
 
   input::placeholder {
