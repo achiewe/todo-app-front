@@ -166,7 +166,7 @@ const TextLi = styled.li<{ darkMode: boolean }>`
   justify-content: space-between;
   @media (min-width: 1024px) {
     padding: 0 24px;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
   }
 
   .circleText {
@@ -234,6 +234,7 @@ const TextLi = styled.li<{ darkMode: boolean }>`
   .cross-svg {
     width: 11.79px;
     height: 11.79px;
+    cursor: pointer;
     @media (min-width: 1024px) {
       width: 17.68px;
       height: 17.68px;
