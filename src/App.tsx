@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import TodoMain from "./components/TodoMain";
 import bgMLight from "../src/assets/bg-mobile-light.jpg";
 import bgMDark from "../src/assets/bg-mobile-dark.jpg";
+import bgDDark from "../src/assets/bg-desktop-dark.jpg";
+import bgDLight from "../src/assets/bg-desktop-light.jpg";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Mode } from "./store/redux";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -37,6 +39,12 @@ const MainContainer = styled.div<{ darkMode: boolean }>`
   background-repeat: no-repeat;
   background-size: 100% 200px;
   padding: 0 24px;
+  @media (min-width: 1024px) {
+    background-image: url(${(props) => (props.darkMode ? bgDDark : bgDLight)});
+    background-size: 100% 300px;
+    padding: 0;
+    align-items: center;
+  }
 `;
 
 export default App;
