@@ -42,11 +42,27 @@ const MainHeader = styled.header`
   margin-top: 48px;
   margin-bottom: 40px;
   cursor: pointer;
+  @media (min-width: 1024px) {
+    margin-top: 70px;
+    max-width: 541px;
+  }
+
+  .todoSvg {
+    @media (min-width: 1024px) {
+      width: 167px;
+      height: 40px;
+      cursor: pointer;
+    }
+  }
 
   .sunMonSvg {
     width: 20px;
     height: 20px;
     cursor: pointer;
+    @media (min-width: 1024px) {
+      width: 26px;
+      height: 26px;
+    }
   }
 `;
 
