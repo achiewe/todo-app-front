@@ -1,9 +1,18 @@
 import { styled } from "styled-components";
 import TodoSvg from "../assets/TODO.svg";
 import MoonSvg from "../assets/icon-moon.svg";
+import { Mode } from "../store/redux";
+import { dark } from "../store/ModeSlice";
 import SunSvg from "../assets/icon-sun.svg";
+import { useDispatch, useSelector } from "react-redux";
 
 const Header = (): JSX.Element => {
+  const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
+  const dispatch = useDispatch();
+  const clickOnMode = (): void => {
+    dispatch(dark(!darkMode));
+  };
+
   return (
     <MainHeader>
       <img
@@ -14,7 +23,12 @@ const Header = (): JSX.Element => {
         src={TodoSvg}
         alt="todo svg"
       />
-      <img className="sunMonSvg" src={MoonSvg} alt="Sun Moon svg" />
+      <img
+        className="sunMonSvg"
+        onClick={clickOnMode}
+        src={darkMode ? SunSvg : MoonSvg}
+        alt="Sun Moon svg"
+      />
     </MainHeader>
   );
 };
