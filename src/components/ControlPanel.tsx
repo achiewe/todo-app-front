@@ -29,6 +29,9 @@ const MainControl = styled.div<{ darkMode: boolean }>`
       ? "0px 35px 50px -15px rgba(0, 0, 0, 0.5)"
       : "0px 35px 50px -15px rgba(194, 195, 214, 0.5)"};
   gap: 18px;
+  @media (min-width: 1024px) {
+    width: 540px;
+  }
 
   a {
     font-size: 14px;
