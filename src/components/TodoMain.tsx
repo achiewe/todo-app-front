@@ -11,7 +11,7 @@ import { useState } from "react";
 const TodoMain = (): JSX.Element => {
   const [info, setInfo] = useState<DataProps[] | []>([]);
   const takeData = async () => {
-    const response = await axios.get("http://localhost:3000/api/tasks");
+    const response = await axios.get("http://localhost:3002/api/tasks");
     const data = response.data;
 
     setInfo(data);
@@ -20,9 +20,14 @@ const TodoMain = (): JSX.Element => {
     takeData();
   }, []);
 
-  const deleteAll = async () => {
-    await axios.delete("http://localhost:3000/api/deleteAll");
-    setInfo([]);
+  const cancelWord = async (id: string) => {
+    try {
+      console.log("sasqq");
+      await axios.delete(`http://localhost:3002/api/tasks/${id}`);
+      takeData();
+    } catch (error) {
+      console.log("sass");
+    }
   };
 
   return (
@@ -30,21 +35,28 @@ const TodoMain = (): JSX.Element => {
       <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
         {info.map((infoItem, index) => (
-          <div key={index}>{infoItem?.title}</div>
-        ))}
-
-        <TextLi>
-          <div className="circleText">
-            <button className="circle">
-              <img className="check-icon" src={iconchek} alt="check icon" />
-            </button>
-            <h3> </h3>
+          <div key={index}>
+            {infoItem?.title}
+            <TextLi>
+              <div className="circleText">
+                <button className="circle">
+                  <img className="check-icon" src={iconchek} alt="check icon" />
+                </button>
+                <h3> </h3>
+              </div>
+              <img
+                onClick={() => {
+                  cancelWord(infoItem._id);
+                }}
+                className="cross-svg"
+                src={crossSvg}
+                alt="cross svg"
+              />
+            </TextLi>
+            <hr />
           </div>
-          <img className="cross-svg" src={crossSvg} alt="cross svg" />
-        </TextLi>
-        <hr />
+        ))}
         <div className="itemsClear">
-          <button onClick={deleteAll}>delete all</button>
           <h2> {} items left</h2>
           <button className="clear">Clear Completed</button>
         </div>
@@ -69,6 +81,7 @@ const MainSaveDiv = styled.div`
     background-color: "#FFFFFF";
     box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
     border-radius: 5px;
+    margin-top: 30px;
     padding: 16px 0 22px 0;
     gap: 16px;
 
