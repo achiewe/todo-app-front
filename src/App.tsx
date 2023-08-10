@@ -2,6 +2,7 @@ import styled from "styled-components";
 import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import TodoMain from "./components/TodoMain";
+import TodoActive from "./components/TodoActive";
 import bgMLight from "../src/assets/bg-mobile-light.jpg";
 import bgMDark from "../src/assets/bg-mobile-dark.jpg";
 import bgDDark from "../src/assets/bg-desktop-dark.jpg";
@@ -19,7 +20,7 @@ function App(): JSX.Element {
         <Header />
         <Routes>
           <Route path="/" element={<TodoMain />} />
-          <Route path="/Active" />
+          <Route path="/Active" element={<TodoActive />} />
           <Route path="/Completed" />
         </Routes>
       </Router>
