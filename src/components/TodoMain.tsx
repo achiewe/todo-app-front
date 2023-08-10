@@ -6,13 +6,17 @@ import { useEffect } from "react";
 import axios from "axios";
 import crossSvg from "../assets/icon-cross.svg";
 import { DataProps } from "../types";
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Mode } from "../store/redux";
 
-const TodoMain = (): JSX.Element => {
+interface TodoMainProps {
+  setInfo: (data: DataProps[]) => void;
+  info: DataProps[];
+}
+
+const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
-  const [info, setInfo] = useState<DataProps[] | []>([]);
+
   const takeData = async () => {
     const response = await axios.get("http://localhost:3002/api/tasks");
     const data = response.data;

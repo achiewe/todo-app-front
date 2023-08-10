@@ -9,9 +9,12 @@ import bgDDark from "../src/assets/bg-desktop-dark.jpg";
 import bgDLight from "../src/assets/bg-desktop-light.jpg";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Mode } from "./store/redux";
+import { DataProps } from "./types";
+import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App(): JSX.Element {
+  const [info, setInfo] = useState<DataProps[] | []>([]);
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
   return (
     <MainContainer darkMode={darkMode}>
@@ -19,8 +22,14 @@ function App(): JSX.Element {
         <GlobalStyles />
         <Header />
         <Routes>
-          <Route path="/" element={<TodoMain />} />
-          <Route path="/Active" element={<TodoActive />} />
+          <Route
+            path="/"
+            element={<TodoMain setInfo={setInfo} info={info} />}
+          />
+          <Route
+            path="/Active"
+            element={<TodoActive setInfo={setInfo} info={info} />}
+          />
           <Route path="/Completed" />
         </Routes>
       </Router>
