@@ -28,11 +28,18 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
 
   const cancelWord = async (id: string) => {
     try {
-      console.log("sasqq");
       await axios.delete(`http://localhost:3002/api/tasks/${id}`);
       takeData();
     } catch (error) {
-      console.log("sass");
+      console.log("error");
+    }
+  };
+
+  const deleteCompleted = async () => {
+    try {
+      await axios.delete("http://localhost:3002/api/deleteCompleted");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -63,7 +70,14 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
         ))}
         <div className="itemsClear">
           <h2> {} items left</h2>
-          <button className="clear">Clear Completed</button>
+          <button
+            onClick={() => {
+              deleteCompleted();
+            }}
+            className="clear"
+          >
+            Clear Completed
+          </button>
         </div>
       </ul>
       <ControlPanel />

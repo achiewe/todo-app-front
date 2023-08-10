@@ -2,12 +2,37 @@ import { styled } from "styled-components";
 import ControlPanel from "./ControlPanel";
 import { DataProps } from "../types";
 import InputSaveBar from "./InputSaveBar";
+import { useSelector } from "react-redux";
+import iconchek from "../assets/icon-check.svg";
+import crossSvg from "../assets/icon-cross.svg";
+import { useEffect } from "react";
+import axios from "axios";
+import { Mode } from "../store/redux";
 
 interface TodoActiveProps {
   setInfo: (data: DataProps[]) => void;
   info: DataProps[];
 }
 const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
+  const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
+
+  const takeData = async () => {
+    const response = await axios.get("http://localhost:3002/api/tasks");
+    const data = response.data;
+    setInfo(data);
+  };
+  useEffect(() => {
+    takeData();
+  }, []);
+
+  const cancelWord = async (id: string) => {
+    try {
+      await axios.delete(`http://localhost:3002/api/tasks/${id}`);
+      takeData();
+    } catch (error) {
+      console.log("sass");
+    }
+  };
   return (
     <MainSaveDiv darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />

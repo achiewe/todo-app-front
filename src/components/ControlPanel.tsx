@@ -9,7 +9,7 @@ const ControlPanel = (): JSX.Element => {
     <MainControl darkMode={darkMode}>
       <Link to="/">All </Link>
       <Link to="/Active">Active</Link>
-      <Link to="Completed">Completed</Link>
+      <Link to="/Completed">Completed</Link>
     </MainControl>
   );
 };
