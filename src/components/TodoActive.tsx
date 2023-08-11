@@ -44,12 +44,12 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
     }
   };
   return (
-    <MainSaveDiv darkMode={darkMode}>
+    <MainSaveDiv info={info} darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
         {info.map((infoItem, index) => (
           <div key={index}>
-            <TextLi darkMode={darkMode}>
+            <TextLi darkMode={darkMode} done={infoItem.succeed}>
               <div className="circleText">
                 <button
                   onClick={() => {
@@ -83,7 +83,7 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
   );
 };
 
-const MainSaveDiv = styled.div<{ darkMode: boolean }>`
+const MainSaveDiv = styled.div<{ darkMode: boolean; info: DataProps[] }>`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@ const MainSaveDiv = styled.div<{ darkMode: boolean }>`
 
   .itemsUl {
     width: 100%;
-    display: flex;
+    display: ${(props) => (props.info.length === 0 ? "none" : "flex")};
     flex-direction: column;
     background-color: ${(props) => (props.darkMode ? "#25273D" : "#FFFFFF")};
     box-shadow: ${(props) =>
@@ -172,7 +172,7 @@ const MainSaveDiv = styled.div<{ darkMode: boolean }>`
   }
 `;
 
-const TextLi = styled.li<{ darkMode: boolean }>`
+const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -207,6 +207,10 @@ const TextLi = styled.li<{ darkMode: boolean }>`
       @media (min-width: 1024px) {
         width: 24px;
         height: 24px;
+      }
+
+      .check-icon {
+        display: flex;
       }
     }
 

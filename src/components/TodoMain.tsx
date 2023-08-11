@@ -59,11 +59,12 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
       <ul className="itemsUl">
         {info.map((infoItem, index) => (
           <div key={index}>
-            <TextLi darkMode={darkMode}>
+            <TextLi darkMode={darkMode} done={infoItem.succeed}>
               <div className="circleText">
                 <button
                   onClick={() => {
                     reviseTodos(infoItem._id, !infoItem.succeed);
+                    console.log(infoItem.succeed);
                   }}
                   className="circle"
                 >
@@ -189,7 +190,7 @@ const MainSaveDiv = styled.div<{ darkMode: boolean; info: DataProps[] }>`
   }
 `;
 
-const TextLi = styled.li<{ darkMode: boolean }>`
+const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
