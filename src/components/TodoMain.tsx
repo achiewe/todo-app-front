@@ -16,6 +16,7 @@ interface TodoMainProps {
 
 const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
+  const active = info.filter((info) => info.succeed === false);
 
   const takeData = async () => {
     const response = await axios.get("http://localhost:3002/api/tasks");
@@ -69,7 +70,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
           </div>
         ))}
         <div className="itemsClear">
-          <h2> {} items left</h2>
+          <h2> {active.length} items left</h2>
           <button
             onClick={() => {
               deleteCompleted();
