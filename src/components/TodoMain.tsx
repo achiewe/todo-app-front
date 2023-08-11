@@ -44,6 +44,15 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
     }
   };
 
+  const reviseTodos = async (id: string, succeed: boolean) => {
+    try {
+      await axios.put(`http://localhost:3002/api/tasks/${id}`, { succeed });
+      takeData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <MainSaveDiv darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />
@@ -52,7 +61,12 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
           <div key={index}>
             <TextLi darkMode={darkMode}>
               <div className="circleText">
-                <button className="circle">
+                <button
+                  onClick={() => {
+                    reviseTodos(infoItem._id, !infoItem.succeed);
+                  }}
+                  className="circle"
+                >
                   <img className="check-icon" src={iconchek} alt="check icon" />
                 </button>
                 <h3> {infoItem?.title} </h3>
