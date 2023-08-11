@@ -26,6 +26,15 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
     takeData();
   }, []);
 
+  const reviseTodos = async (id: string, succeed: boolean) => {
+    try {
+      await axios.put(`http://localhost:3002/api/tasks/${id}`, { succeed });
+      takeData();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const cancelWord = async (id: string) => {
     try {
       await axios.delete(`http://localhost:3002/api/tasks/${id}`);
@@ -42,7 +51,12 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
           <div key={index}>
             <TextLi darkMode={darkMode}>
               <div className="circleText">
-                <button className="circle">
+                <button
+                  onClick={() => {
+                    reviseTodos(infoItem._id, !infoItem.succeed);
+                  }}
+                  className="circle"
+                >
                   <img className="check-icon" src={iconchek} alt="check icon" />
                 </button>
                 <h3> {infoItem?.title} </h3>
