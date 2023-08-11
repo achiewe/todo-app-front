@@ -190,7 +190,7 @@ const MainSaveDiv = styled.div<{ darkMode: boolean; info: DataProps[] }>`
   }
 `;
 
-const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
+const TextLi = styled.li<{ darkMode: boolean; done?: boolean }>`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -221,7 +221,10 @@ const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
       cursor: pointer;
       border: ${(props) =>
         props.darkMode ? "1px solid #393A4B" : "1px solid #e3e4f1"};
-      background: none;
+      background: ${(props) =>
+        props.done
+          ? "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
+          : "none"};
       @media (min-width: 1024px) {
         width: 24px;
         height: 24px;
@@ -233,7 +236,7 @@ const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
     }
 
     .check-icon {
-      display: none;
+      display: ${(props) => (props.done ? "block" : "none")};
       position: absolute;
       top: 4px;
       left: 4px;
