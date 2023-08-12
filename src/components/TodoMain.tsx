@@ -96,7 +96,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
           </button>
         </div>
       </ul>
-      <ControlPanel />
+      <ControlPanel info={info} />
     </MainSaveDiv>
   );
 };

@@ -2,11 +2,16 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Mode } from "../store/redux";
+import { DataProps } from "../types";
 
-const ControlPanel = (): JSX.Element => {
+interface ControlPanelProps {
+  info: DataProps[];
+}
+
+const ControlPanel = ({ info }: ControlPanelProps): JSX.Element => {
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
   return (
-    <MainControl darkMode={darkMode}>
+    <MainControl darkMode={darkMode} info={info}>
       <Link to="/">All </Link>
       <Link to="/Active">Active</Link>
       <Link to="/Completed">Completed</Link>
@@ -14,8 +19,8 @@ const ControlPanel = (): JSX.Element => {
   );
 };
 
-const MainControl = styled.div<{ darkMode: boolean }>`
-  display: flex;
+const MainControl = styled.div<{ darkMode: boolean; info: DataProps[] }>`
+  display: ${(props) => (props.info.length === 0 ? "none" : "flex")};
   justify-content: center;
   align-items: center;
   flex-direction: row;
