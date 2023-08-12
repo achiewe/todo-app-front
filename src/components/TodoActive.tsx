@@ -210,27 +210,12 @@ const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
       }
 
       .check-icon {
-        display: flex;
+        display: none;
       }
     }
 
     .circle:hover {
       border: 1px solid #c058f3;
-    }
-
-    .check-icon {
-      display: none;
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      right: 4px;
-      bottom: 4px;
-      @media (min-width: 1024px) {
-        top: 5px;
-        left: 5px;
-        right: 5px;
-        bottom: 2px;
-      }
     }
 
     h3 {
