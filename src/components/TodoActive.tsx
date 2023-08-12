@@ -47,23 +47,23 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
     <MainSaveDiv info={info} darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
-        {info.map((infoItem, index) => (
+        {active.map((Inaction, index) => (
           <div key={index}>
-            <TextLi darkMode={darkMode} done={infoItem.succeed}>
+            <TextLi darkMode={darkMode} done={Inaction.succeed}>
               <div className="circleText">
                 <button
                   onClick={() => {
-                    reviseTodos(infoItem._id, !infoItem.succeed);
+                    reviseTodos(Inaction._id, !Inaction.succeed);
                   }}
                   className="circle"
                 >
                   <img className="check-icon" src={iconchek} alt="check icon" />
                 </button>
-                <h3> {infoItem?.title} </h3>
+                <h3> {Inaction?.title} </h3>
               </div>
               <img
                 onClick={() => {
-                  cancelWord(infoItem._id);
+                  cancelWord(Inaction._id);
                 }}
                 className="cross-svg"
                 src={crossSvg}
