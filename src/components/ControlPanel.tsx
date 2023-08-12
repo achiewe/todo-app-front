@@ -49,7 +49,7 @@ const MainControl = styled.div<{ darkMode: boolean; info: DataProps[] }>`
     cursor: pointer;
 
     :hover {
-      color: ${(props) => (props.darkMode ? "#E3E4F1" : "#494C6B")};
+      color: ${(props) => (props.darkMode ? "#494C6B" : "#E3E4F1")};
     }
 
     :focus {

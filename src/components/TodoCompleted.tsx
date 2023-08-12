@@ -16,7 +16,7 @@ interface TodoCompleteProps {
 
 const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
-  const active = info.filter((info) => info.succeed === false);
+  const active = info.filter((info) => info.succeed === true);
 
   const takeData = async () => {
     const response = await axios.get("http://localhost:3002/api/tasks");
@@ -54,7 +54,7 @@ const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
               <div className="circleText">
                 <button
                   onClick={() => {
-                    reviseTodos(infoItem._id, !infoItem.succeed);
+                    reviseTodos(infoItem._id, infoItem.succeed);
                   }}
                   className="circle"
                 >
@@ -241,7 +241,15 @@ const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
       letter-spacing: -0.1666666716337204px;
       text-align: left;
       cursor: pointer;
-      color: ${(props) => (props.darkMode ? "#C8CBE7" : "#494c6b")};
+      text-decoration: ${(props) => (props.done ? "line-through" : "")};
+      color: ${(props) =>
+        props.done
+          ? props.darkMode
+            ? "#4D5067"
+            : "#D1D2DA"
+          : props.darkMode
+          ? "#C8CBE7"
+          : "#494c6b"};
       @media (min-width: 1024px) {
         font-size: 18px;
         font-weight: 400;
