@@ -3,6 +3,7 @@ import GlobalStyles from "./GlobalStyles";
 import Header from "./components/Header";
 import TodoMain from "./components/TodoMain";
 import TodoActive from "./components/TodoActive";
+import TodoCompleted from "./components/TodoCompleted";
 import bgMLight from "../src/assets/bg-mobile-light.jpg";
 import bgMDark from "../src/assets/bg-mobile-dark.jpg";
 import bgDDark from "../src/assets/bg-desktop-dark.jpg";
@@ -30,7 +31,10 @@ function App(): JSX.Element {
             path="/Active"
             element={<TodoActive setInfo={setInfo} info={info} />}
           />
-          <Route path="/Completed" />
+          <Route
+            path="/Completed"
+            element={<TodoCompleted setInfo={setInfo} info={info} />}
+          />
         </Routes>
       </Router>
     </MainContainer>
