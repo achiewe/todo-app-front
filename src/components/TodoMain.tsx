@@ -19,7 +19,9 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const active = info.filter((info) => info.succeed === false);
 
   const takeData = async () => {
-    const response = await axios.get("http://localhost:3002/api/tasks");
+    const response = await axios.get(
+      "https://todo-app-api-production-a839.up.railway.app/api/tasks"
+    );
     const data = response.data;
     setInfo(data);
   };
@@ -29,7 +31,9 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
 
   const cancelWord = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:3002/api/tasks/${id}`);
+      await axios.delete(
+        `https://todo-app-api-production-a839.up.railway.app/api/tasks/${id}`
+      );
       takeData();
     } catch (error) {
       console.log("error");
@@ -38,7 +42,9 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
 
   const ClearCompleted = async () => {
     try {
-      await axios.delete("http://localhost:3002/api/deleteCompleted");
+      await axios.delete(
+        "https://todo-app-api-production-a839.up.railway.app/api/deleteCompleted"
+      );
     } catch (error) {
       console.log(error);
     }
@@ -46,7 +52,10 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
 
   const reviseTodos = async (id: string, succeed: boolean) => {
     try {
-      await axios.put(`http://localhost:3002/api/tasks/${id}`, { succeed });
+      await axios.put(
+        `https://todo-app-api-production-a839.up.railway.app/api/tasks/${id}`,
+        { succeed }
+      );
       takeData();
     } catch (error) {
       console.log(error);

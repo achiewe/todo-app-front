@@ -13,10 +13,13 @@ const InputSaveBar = ({ takeData }: propsBar): JSX.Element => {
     try {
       e.preventDefault();
       const inputValue = e.target.searchPlace.value;
-      await axios.post("http://localhost:3002/api/addtask", {
-        title: inputValue,
-        succeed: false,
-      });
+      await axios.post(
+        "https://todo-app-api-production-a839.up.railway.app/api/addtask",
+        {
+          title: inputValue,
+          succeed: false,
+        }
+      );
       takeData();
     } catch (error) {
       return error;
