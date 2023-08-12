@@ -36,7 +36,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
     }
   };
 
-  const deleteCompleted = async () => {
+  const ClearCompleted = async () => {
     try {
       await axios.delete("http://localhost:3002/api/deleteCompleted");
     } catch (error) {
@@ -88,7 +88,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
           <h2> {active.length} items left</h2>
           <button
             onClick={() => {
-              deleteCompleted();
+              ClearCompleted();
             }}
             className="clear"
           >
