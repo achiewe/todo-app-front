@@ -16,7 +16,7 @@ interface TodoCompleteProps {
 
 const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
   const darkMode = useSelector((redux: Mode) => redux.Mode.gloomy);
-  const active = info.filter((info) => info.succeed === true);
+  const complete = info.filter((info) => info.succeed === true);
 
   const takeData = async () => {
     const response = await axios.get("http://localhost:3002/api/tasks");
@@ -48,23 +48,23 @@ const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
     <MainSaveDiv info={info} darkMode={darkMode}>
       <InputSaveBar takeData={takeData} />
       <ul className="itemsUl">
-        {info.map((infoItem, index) => (
+        {complete.map((succeed, index) => (
           <div key={index}>
-            <TextLi darkMode={darkMode} done={infoItem.succeed}>
+            <TextLi darkMode={darkMode} done={succeed.succeed}>
               <div className="circleText">
                 <button
                   onClick={() => {
-                    reviseTodos(infoItem._id, infoItem.succeed);
+                    reviseTodos(succeed._id, succeed.succeed);
                   }}
                   className="circle"
                 >
                   <img className="check-icon" src={iconchek} alt="check icon" />
                 </button>
-                <h3> {infoItem?.title} </h3>
+                <h3> {succeed?.title} </h3>
               </div>
               <img
                 onClick={() => {
-                  cancelWord(infoItem._id);
+                  cancelWord(succeed._id);
                 }}
                 className="cross-svg"
                 src={crossSvg}
@@ -75,7 +75,7 @@ const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
           </div>
         ))}
         <div className="itemsClear">
-          <h2> {active.length} items left</h2>
+          <h2> {complete.length} items left</h2>
           <button className="clear">Clear Completed</button>
         </div>
       </ul>
@@ -204,34 +204,33 @@ const TextLi = styled.li<{ darkMode: boolean; done: boolean }>`
       cursor: pointer;
       border: ${(props) =>
         props.darkMode ? "1px solid #393A4B" : "1px solid #e3e4f1"};
-      background: none;
+      background: ${(props) =>
+        props.done
+          ? "linear-gradient(135deg, #55DDFF 0%, #C058F3 100%)"
+          : "none"};
       @media (min-width: 1024px) {
         width: 24px;
         height: 24px;
       }
 
       .check-icon {
-        display: flex;
+        display: ${(props) => (props.done ? "flex" : "none")};
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        @media (min-width: 1024px) {
+          top: 5px;
+          left: 5px;
+          right: 5px;
+          bottom: 2px;
+        }
       }
     }
 
     .circle:hover {
       border: 1px solid #c058f3;
-    }
-
-    .check-icon {
-      display: none;
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      right: 4px;
-      bottom: 4px;
-      @media (min-width: 1024px) {
-        top: 5px;
-        left: 5px;
-        right: 5px;
-        bottom: 2px;
-      }
     }
 
     h3 {
