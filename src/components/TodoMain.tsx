@@ -257,7 +257,15 @@ const TextLi = styled.li<{ darkMode: boolean; done?: boolean }>`
       letter-spacing: -0.1666666716337204px;
       text-align: left;
       cursor: pointer;
-      color: ${(props) => (props.darkMode ? "#C8CBE7" : "#494c6b")};
+      text-decoration: ${(props) => (props.done ? "line-through" : "")};
+      color: ${(props) =>
+        props.done
+          ? props.darkMode
+            ? "#4D5067"
+            : "#D1D2DA"
+          : props.darkMode
+          ? "#C8CBE7"
+          : "#494c6b"};
       @media (min-width: 1024px) {
         font-size: 18px;
         font-weight: 400;
