@@ -76,7 +76,6 @@ const TodoCompleted = ({ info, setInfo }: TodoCompleteProps): JSX.Element => {
         ))}
         <div className="itemsClear">
           <h2> {complete.length} items left</h2>
-          <button className="clear">Clear Completed</button>
         </div>
       </ul>
       <ControlPanel info={info} />
