@@ -19,7 +19,7 @@ const TodoActive = ({ setInfo, info }: TodoActiveProps): JSX.Element => {
 
   const takeData = async () => {
     const response = await axios.get(
-      "https://todo-app-api-production-c761.up.railway.app/api/tasks"
+      "http://todo-app-api-production-c761.up.railway.app/api/tasks"
     );
     const data = response.data;
     setInfo(data);
