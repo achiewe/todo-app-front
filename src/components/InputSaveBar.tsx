@@ -14,7 +14,7 @@ const InputSaveBar = ({ takeData }: propsBar): JSX.Element => {
       e.preventDefault();
       const inputValue = e.target.searchPlace.value;
       await axios.post(
-        "https://todo-app-api-production-a839.up.railway.app/api/addtask",
+        "https://todo-app-api-production-c761.up.railway.app/api/addtask",
         {
           title: inputValue,
           succeed: false,
