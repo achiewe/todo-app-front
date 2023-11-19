@@ -20,7 +20,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
 
   const takeData = async () => {
     const response = await axios.get(
-      "https://todo-app-api-production-c761.up.railway.app/api/tasks"
+      "https://todo-app-api-production-388b.up.railway.app/api/tasks"
     );
     const data = response.data;
     setInfo(data);
@@ -32,7 +32,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const cancelWord = async (id: string) => {
     try {
       await axios.delete(
-        `https://todo-app-api-production-c761.up.railway.app/api/tasks/${id}`
+        `https://todo-app-api-production-388b.up.railway.app/api/tasks/${id}`
       );
       takeData();
     } catch (error) {
@@ -43,7 +43,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const ClearCompleted = async () => {
     try {
       await axios.delete(
-        "https://todo-app-api-production-c761.up.railway.app/api/deleteCompleted"
+        "https://todo-app-api-production-388b.up.railway.app/api/deleteCompleted"
       );
     } catch (error) {
       console.log(error);
@@ -53,7 +53,7 @@ const TodoMain = ({ setInfo, info }: TodoMainProps): JSX.Element => {
   const reviseTodos = async (id: string, succeed: boolean) => {
     try {
       await axios.put(
-        `https://todo-app-api-production-c761.up.railway.app/api/tasks/${id}`,
+        `https://todo-app-api-production-388b.up.railway.app/api/tasks/${id}`,
         { succeed }
       );
       takeData();
